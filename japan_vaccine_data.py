@@ -116,6 +116,6 @@ vaccine_data_summaries.close()
 
 os.system("Rscript japan_vaccine_graphs.R")
 
-os.system("cp japan_vaccine_data.py japan_vaccine_graphs.R japan_vaccination_rate_plot.pdf japan_vaccine_data_for_graph.txt japan_vaccine_data_summaries.txt japan-covid19-vaccination-data/")
+os.system("cp japan_vaccine_data.py japan_vaccine_graphs.R japan_vaccination_rate_plot.png japan_vaccine_data_for_graph.txt japan_vaccine_data_summaries.txt japan-covid19-vaccination-data/")
 
-os.system("cd japan-covid19-vaccination-data/; git add . ; git commit -m \"Update file\"; git push origin main")
+os.system("cd japan-covid19-vaccination-data/; git add . ; git commit -m \"Updated %s\"; git push origin main" % edate)
