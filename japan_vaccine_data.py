@@ -82,7 +82,7 @@ for day in date_list:
 		coordinated_vaccine_data[day] = [0, 0, 0, " "]
 
 graph_data_file = open("japan_vaccine_data_for_graph.txt", "w")
-vaccine_data_summaries = open("/Volumes/Macintosh HD/Users/cianglenfield/Desktop/japan_vaccine_data/japan_vaccine_data_summaries.txt", "w")
+vaccine_data_summary_file = open("/Volumes/Macintosh HD/Users/cianglenfield/Desktop/japan_vaccine_data/japan_vaccine_data_summaries.txt", "w")
 
 graph_data_file.write("Date\tTotal daily doses given\tFirst doses given\tFollow-up doses given\tBasic doses given total\n")
 
@@ -105,14 +105,14 @@ second_shot_coverage = round((second_dose_total/japanese_population)*100, 2)
 
 total_coverage_comma = "{:,}".format(overall_total)
 
-vaccine_data_summaries.write("%s\t%s\t%s\t%s\n" % (total_coverage_comma, str(overall_population_coverage), str(first_shot_coverage), str(second_shot_coverage)))
+vaccine_data_summary_file.write("%s\t%s\t%s\t%s\n" % (total_coverage_comma, str(overall_population_coverage), str(first_shot_coverage), str(second_shot_coverage)))
 
 
 elderly_file.close()
 medical_workers_file.close()
 MHLW_data_file.close()
 graph_data_file.close()
-vaccine_data_summaries.close()
+vaccine_data_summary_file.close()
 
 os.system("Rscript japan_vaccine_graphs.R")
 
