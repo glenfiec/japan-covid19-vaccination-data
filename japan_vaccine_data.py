@@ -1,16 +1,9 @@
 from __future__ import division
-import scipy
-from scipy import stats
-import numpy
+
 import os, time
 import sys
 from os import path
-
-from urllib.request import urlopen
-from datetime import date, timedelta
-from datetime import datetime
-# import datetime
-import calendar
+from datetime import date, timedelta, datetime
 import wget
 
 
