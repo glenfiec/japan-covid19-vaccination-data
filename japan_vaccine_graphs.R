@@ -20,13 +20,13 @@ vaccine_graph <- ggplot(reshaped, aes(x = Date, y = value, fill = variable)) +
   geom_col() + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 0.9, size = 7.5), plot.title = element_text(face = "bold", hjust = 0.5)) + 
   scale_y_continuous(name = "Total daily doses given", label = comma, limits = c(0, 200000)) + 
-  geom_text(data = reshaped, aes(x = Date, y = Total.daily.doses.given, label = Basic.doses.given.total, angle = 90, hjust = -0.7)) +
-  geom_line(aes(y = reshaped$rolledmean, group = 1, colour = "7 day rolling\n average")) + 
-  labs(title = "COVID-19 vaccination progress in Japan", caption = "Data sources: Japan Ministry of Health, Labour and Welfare\n and Prime Minister's Office of Japan\nJapan population: 126,300,000 (World Bank)\nVaccines approved (1): Pfizer/BioNTech\nWeekend data is compiled the following Monday") + 
   scale_fill_manual(name = "", labels = c("First dose", "Second dose"), values = c("#F8766D", "#00BA38")) + 
+  geom_text(data = reshaped, aes(x = Date, y = Total.daily.doses.given, label = Basic.doses.given.total, angle = 90, hjust = -0.7)) +
+  geom_smooth(aes(y = reshaped$rolledmean, group = 1, colour = "7 day rolling\n average", weight = 0.01), span = 0.25, se = F) + 
+  labs(title = "COVID-19 vaccination progress in Japan", caption = "Data sources: Japan Ministry of Health, Labour and Welfare\n and Prime Minister's Office of Japan\nJapan population: 126,300,000 (World Bank)\nVaccines approved (1): Pfizer/BioNTech\nWeekend data is compiled the following Monday") + 
   scale_color_manual(name = "", values = c("black")) + 
+  guides(fill = guide_legend(override.aes = list(linetype=0))) + 
   annotate("text", x = 2, y = 190000, label = paste("Total doses given: ", total_shots_given, "\nFirst dose coverage: ", first_shot_population_coverage, "%\nSecond dose coverage: ", second_shot_population_coverage, "%", sep = ""), hjust = 0, vjust = 1)
-
 ggsave("japan_vaccination_rate_plot.png", plot = vaccine_graph, width = 12, height = 5)
 ggsave("japan_vaccination_rate_plot.pdf", plot = vaccine_graph, width = 12, height = 5)
 
