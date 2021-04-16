@@ -14,7 +14,7 @@ second_shot_population_coverage <- vaccine_data_summary$V4[1]
 vaccine_data$Date <- factor(vaccine_data$Date, levels = vaccine_data$Date)
 
 reshaped <- reshape2::melt(vaccine_data, id.vars = c("Date", "Total.daily.doses.given", "Basic.doses.given.total"))
-reshaped$rolledmean = rollapply(vaccine_data$Total.daily.doses.given, width = 7, FUN = mean, align = "center", partial = TRUE)
+reshaped$rolledmean = rollapply(vaccine_data$Total.daily.doses.given, width = 7, FUN = mean, align = "right", partial = TRUE)
 
 vaccine_graph <- ggplot(reshaped, aes(x = Date, y = value, fill = variable)) + 
   geom_col() + 
