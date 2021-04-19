@@ -49,8 +49,13 @@ for line in elderly_file:
 		data_date, day, daily_total_elderly, daily_first_shot_elderly, daily_second_shot_elderly = line.rstrip().split(",")
 		date_time = datetime.strptime(data_date, '%Y/%m/%d')
 		new_date = datetime.strftime(date_time, '%a, %b %d')
+		if new_date not in coordinated_vaccine_data:
+			coordinated_vaccine_data[new_date] = [0, 0, 0]
 		daily_total_comma = "{:,}".format(int(daily_total_elderly)+coordinated_vaccine_data[new_date][0])
-		coordinated_vaccine_data[new_date] = [int(daily_total_elderly)+coordinated_vaccine_data[new_date][0], int(daily_first_shot_elderly)+coordinated_vaccine_data[new_date][1], int(daily_second_shot_elderly)+coordinated_vaccine_data[new_date][2], daily_total_comma]
+		new_daily_total = int(daily_total_elderly)+coordinated_vaccine_data[new_date][0]
+		new_daily_first_shot = int(daily_first_shot_elderly)+coordinated_vaccine_data[new_date][1]
+		new_daily_second_shot = int(daily_second_shot_elderly)+coordinated_vaccine_data[new_date][2]
+		coordinated_vaccine_data[new_date] = [new_daily_total, new_daily_first_shot, new_daily_second_shot, daily_total_comma]
 
 
 for line in MHLW_data_file:
