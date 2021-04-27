@@ -19,7 +19,7 @@ reshaped$rolledmean = rollapply(vaccine_data$Total.daily.doses.given, width = 7,
 vaccine_graph <- ggplot(reshaped, aes(x = Date, y = value, fill = variable)) + 
   geom_col() + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 0.9, size = 7.5), plot.title = element_text(face = "bold", hjust = 0.5)) + 
-  scale_y_continuous(name = "Total daily doses given", label = comma, limits = c(0, 300000)) + 
+  scale_y_continuous(name = "Total daily doses given", label = comma, limits = c(0, 400000)) + 
   scale_fill_manual(name = "", labels = c("First dose", "Second dose"), values = c("#F8766D", "#00BA38")) + 
   geom_text(data = reshaped, aes(x = Date, y = Total.daily.doses.given, label = Basic.doses.given.total, angle = 90, hjust = -0.7)) +
   geom_smooth(method = 'loess', formula = y~x, aes(y = reshaped$rolledmean, group = 1, colour = "7 day rolling\n average"), size = 0.7, span = 0.1, se = F) + 
