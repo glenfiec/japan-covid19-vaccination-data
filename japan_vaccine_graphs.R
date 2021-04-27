@@ -26,7 +26,7 @@ vaccine_graph <- ggplot(reshaped, aes(x = Date, y = value, fill = variable)) +
   labs(title = "COVID-19 vaccination progress in Japan", caption = "Data sources: Japan Ministry of Health, Labour and Welfare\n and Prime Minister's Office of Japan\nJapan population: 126,300,000 (World Bank)\nVaccines approved (1): Pfizer/BioNTech\nVaccination data for medical workers are compiled the following Monday") + 
   scale_color_manual(name = "", values = c("black")) + 
   guides(fill = guide_legend(override.aes = list(linetype=0))) + 
-  annotate("text", x = 2, y = 190000, label = paste("Total doses given: ", total_shots_given, "\nFirst dose coverage: ", first_shot_population_coverage, "%\nSecond dose coverage: ", second_shot_population_coverage, "%", sep = ""), hjust = 0, vjust = 1)
+  annotate("text", x = 2, y = 390000, label = paste("Total doses given: ", total_shots_given, "\nFirst dose coverage: ", first_shot_population_coverage, "%\nSecond dose coverage: ", second_shot_population_coverage, "%", sep = ""), hjust = 0, vjust = 1)
 ggsave("japan_vaccination_rate_plot.png", plot = vaccine_graph, width = 12, height = 5)
 ggsave("japan_vaccination_rate_plot.pdf", plot = vaccine_graph, width = 12, height = 5)
 
