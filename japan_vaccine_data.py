@@ -41,14 +41,14 @@ for line in medical_workers_file:
 	if "2021" in line:
 		data_date, day, daily_total_medical, daily_first_shot_medical, daily_second_shot_medical = line.rstrip().split(",")
 		date_time = datetime.strptime(data_date, '%Y/%m/%d')
-		new_date = datetime.strftime(date_time, '%m %d')
+		new_date = datetime.strftime(date_time, '%m/%d')
 		coordinated_vaccine_data[new_date] = [int(daily_total_medical), int(daily_first_shot_medical), int(daily_second_shot_medical)]
 
 for line in elderly_file:
 	if "2021" in line:
 		data_date, day, daily_total_elderly, daily_first_shot_elderly, daily_second_shot_elderly = line.rstrip().split(",")
 		date_time = datetime.strptime(data_date, '%Y/%m/%d')
-		new_date = datetime.strftime(date_time, '%m %d')
+		new_date = datetime.strftime(date_time, '%m/%d')
 		if new_date not in coordinated_vaccine_data:
 			coordinated_vaccine_data[new_date] = [0, 0, 0]
 		daily_total_comma = "{:,}".format(int(daily_total_elderly)+coordinated_vaccine_data[new_date][0])
@@ -60,6 +60,8 @@ for line in elderly_file:
 
 for line in MHLW_data_file:
 	new_date, daily_total, daily_first_shots, daily_second_shots, daily_total_comma = line.rstrip().split("\t")
+	old_date = datetime.strptime(new_date, '%a, %b %d')
+	new_date = datetime.strftime(old_date, '%m/%d')
 	coordinated_vaccine_data[new_date] = [int(daily_total), int(daily_first_shots), int(daily_second_shots), daily_total_comma]
 
 
@@ -72,7 +74,7 @@ date_list = []
 
 for i in range(delta.days):
 	day = sdate + timedelta(days=i)
-	new_format = datetime.strftime(day, '%m %d')
+	new_format = datetime.strftime(day, '%m/%d')
 	date_list += [new_format]
 
 for day in date_list:
