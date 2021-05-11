@@ -77,9 +77,9 @@ for i in range(delta.days):
 	new_format = datetime.strftime(day, '%m/%d')
 	date_list += [new_format]
 
-for day in date_list:
-	if day not in coordinated_vaccine_data:
-		coordinated_vaccine_data[day] = [0, 0, 0, " "]
+# for day in date_list:
+# 	if day not in coordinated_vaccine_data:
+# 		coordinated_vaccine_data[day] = [0, 0, 0, " "]
 
 graph_data_file = open("japan_vaccine_data_for_graph.txt", "w")
 vaccine_data_summary_file = open("/Volumes/Macintosh HD/Users/cianglenfield/Desktop/japan_vaccine_data/japan_vaccine_data_summaries.txt", "w")
@@ -93,10 +93,11 @@ second_dose_total = 0
 
 
 for day in date_list:
-	graph_data_file.write("%s\t%s\t%s\t%s\t%s\n" % (day, coordinated_vaccine_data[day][0], coordinated_vaccine_data[day][1], coordinated_vaccine_data[day][2], coordinated_vaccine_data[day][3]))
-	overall_total += coordinated_vaccine_data[day][0]
-	first_dose_total += coordinated_vaccine_data[day][1]
-	second_dose_total += coordinated_vaccine_data[day][2]
+	if day in coordinated_vaccine_data:
+		graph_data_file.write("%s\t%s\t%s\t%s\t%s\n" % (day, coordinated_vaccine_data[day][0], coordinated_vaccine_data[day][1], coordinated_vaccine_data[day][2], coordinated_vaccine_data[day][3]))
+		overall_total += coordinated_vaccine_data[day][0]
+		first_dose_total += coordinated_vaccine_data[day][1]
+		second_dose_total += coordinated_vaccine_data[day][2]
 
 
 overall_population_coverage = round((overall_total/(japanese_population*2))*100, 2)
