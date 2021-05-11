@@ -23,7 +23,7 @@ vaccine_graph <- ggplot(reshaped, aes(x = Date, y = value, fill = variable)) +
   scale_fill_manual(name = "", labels = c("First dose", "Second dose"), values = c("#F8766D", "#00BA38")) + 
   geom_text(data = reshaped, aes(x = Date, y = Total.daily.doses.given, label = Basic.doses.given.total, angle = 90, hjust = -0.7)) +
   geom_smooth(method = 'loess', formula = y~x, aes(y = reshaped$rolledmean, group = 1, colour = "7 day rolling\n average"), size = 0.7, span = 0.1, se = F) + 
-  labs(title = "COVID-19 vaccination progress in Japan", caption = "Data sources: Japan Ministry of Health, Labour and Welfare\n and Prime Minister's Office of Japan\nJapan population: 126,300,000 (World Bank)\nVaccines approved (1): Pfizer/BioNTech\nVaccination data for medical workers are compiled the following Monday") + 
+  labs(title = "COVID-19 vaccination progress in Japan", caption = "Data sources: Japan Ministry of Health, Labour and Welfare\n and Prime Minister's Office of Japan\nJapan population: 126,300,000 (World Bank)\nVaccines approved (1): Pfizer/BioNTech\nDays without data are omitted.") + 
   scale_color_manual(name = "", values = c("black")) + 
   guides(fill = guide_legend(override.aes = list(linetype=0))) +
   annotate("text", x = 2, y = 690000, label = paste("Total doses given: ", total_shots_given, "\nFirst dose coverage: ", first_shot_population_coverage, "%\nSecond dose coverage: ", second_shot_population_coverage, "%", sep = ""), hjust = 0, vjust = 1)
